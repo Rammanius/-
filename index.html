@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Межотраслевая ассоциация функциональная безопасность</title>
+    <style>
+        :root {
+            --primary-color: #2b3c5a;   /* Тёмно-синий из логотипа */
+            --accent-color: #00b3e3;    /* Яркий голубой из логотипа */
+            --secondary-color: #f4f7f9; /* Светлый прохладный фон */
+            --text-color: #212d42;      /* Цвет текста (глубокий сланец) */
+            --bg-color: #ffffff;        /* Белый фон для блоков */
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            
+            /* Паттерн на заднем фоне */
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='450' height='250'><text x='20' y='80' font-family='Segoe UI, sans-serif' font-size='24' fill='%23212d42' opacity='0.07' font-weight='bold' transform='rotate(-15)'>МЭК 61508 • МАФБ</text><text x='150' y='180' font-family='Segoe UI, sans-serif' font-size='20' fill='%23212d42' opacity='0.07' font-weight='bold' transform='rotate(-15)'>ISO 26262 • МЭК 61511</text></svg>");
+            background-repeat: repeat;
+            
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: var(--bg-color);
+            padding: 1rem clamp(16px, 3vw, 32px);
+            border-bottom: 5px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            width: min(100%, 1200px);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease-in-out;
+        }
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+        .header-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .header-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .container {
+            width: min(calc(100% - clamp(32px, 6vw, 64px)), 1200px);
+            margin: 0 auto;
+            padding: clamp(16px, 3vw, 32px) 0;
+        }
+
+        /* Hero Блок */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2538 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(43, 60, 90, 0.15);
+        }
+        .hero h1 {
+            margin-top: 0;
+            font-size: 2.4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+        }
+        .hero .btn {
+            background: var(--accent-color);
+            font-size: 1.1rem;
+            padding: 14px 30px;
+        }
+        .hero .btn:hover {
+            background: #0092ba;
+        }
+
+        /* Блок с цифрами */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: var(--bg-color);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(43, 60, 90, 0.05);
+            gap: 20px;
+        }
+        .stat-box {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Бесконечная бесшовная бегущая строка (Ticker) */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            padding: 15px 0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(43, 60, 90, 0.05);
+            position: relative;
+        }
+        
+        .ticker-wrap::before, .ticker-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            z-index: 2;
+        }
+        .ticker-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-color), transparent);
+        }
+        .ticker-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-color), transparent);
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker-animation 25s linear infinite;
+        }
+        .ticker-group {
+            display: flex;
+            align-items: center;
+        }
+        .ticker-item {
+            padding: 0 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .ticker-item span {
+            color: var(--accent-color);
+            margin-left: 20px;
+        }
+
+        @keyframes ticker-animation {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Общие секции */
+        section {
+            background: var(--bg-color);
+            margin-bottom: 25px;
+            padding: clamp(24px, 3vw, 40px);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(43, 60, 90, 0.05);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 12px;
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        /* CSS Grid для карточек */
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+        .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+
+        .card {
+            background: var(--secondary-color);
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 3px solid transparent;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .card:hover {
+            border-top-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            background: #fff;
+        }
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        /* Списки и текст */
+        .list-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .list-items li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+        }
+        .list-items li:last-child {
+            border-bottom: none;
+        }
+        .list-items .date {
+            min-width: 80px;
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+
+        /* Участники */
+        .members-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .member-logo {
+            max-height: 60px;
+            max-width: 150px;
+            width: auto; 
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+            filter: grayscale(100%);
+            opacity: 0.7;
+        }
+        .member-logo:hover {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Руководство */
+        .leadership-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        .leader-card {
+            flex: 1;
+            min-width: 220px;
+            background: var(--secondary-color);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 3px solid var(--primary-color);
+        }
+        .portrait-placeholder {
+            width: 100px;
+            height: 100px;
+            background: #cbd5e1;
+            border: 3px solid white;
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Кнопки и Формы */
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.2s ease, transform 0.1s;
+        }
+        .btn:hover { background: var(--accent-color); }
+        .btn:active { transform: scale(0.98); }
+        
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+            color: var(--text-color);
+            background-color: #fdfdfd;
+        }
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 179, 227, 0.15);
+        }
+        .form-status {
+            min-height: 1.3em;
+            margin: 12px 0 0;
+            font-size: 0.95rem;
+        }
+        .form-status.success {
+            color: #047857;
+        }
+        .form-status.error {
+            color: #b91c1c;
+        }
+        footer .form-status.success {
+            color: #7dd3fc;
+        }
+        footer .form-status.error {
+            color: #fecaca;
+        }
+        .btn:disabled {
+            cursor: wait;
+            opacity: 0.7;
+        }
+
+        /* Подвал */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 50px clamp(16px, 3vw, 32px);
+            text-align: left;
+            border-top: 5px solid var(--accent-color);
+        }
+        .footer-content {
+            width: min(100%, 1200px);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: min(300px, 100%);
+        }
+        .footer-section h2 {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .footer-section .btn { background: var(--accent-color); }
+        .footer-section .btn:hover { background: #0092ba; }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; text-align: center; }
+            .nav-menu { justify-content: center; flex-wrap: wrap; gap: 15px; }
+            .hero { padding: 40px 20px; }
+            .hero h1 { font-size: 1.8rem; }
+            .stat-box { min-width: 40%; margin-bottom: 15px; }
+            .grid-2,
+            .grid-3,
+            .grid[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-container {
+                padding: 24px 18px;
+            }
+            .stat-box {
+                min-width: 100%;
+            }
+            .list-items li {
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+
+        /* Premium visual layer */
+        :root {
+            --primary-color: #2b3c5a;
+            --accent-color: #00b3e3;
+            --secondary-color: #edf2f6;
+            --text-color: #182235;
+            --bg-color: #ffffff;
+            --surface-color: rgba(255, 255, 255, 0.96);
+            --surface-muted: #f7f9fb;
+            --line-color: rgba(43, 60, 90, 0.14);
+            --muted-color: #5b687b;
+            --premium-shadow: 0 24px 60px rgba(18, 29, 45, 0.11);
+            --soft-shadow: 0 14px 34px rgba(43, 60, 90, 0.08);
+            --page-gutter: max(clamp(20px, 4vw, 44px), calc((100vw - 1180px) / 2 + 36px));
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            line-height: 1.65;
+            color: var(--text-color);
+            background-color: #edf2f6;
+            background-image:
+                linear-gradient(180deg, #dfe8ef 0%, #f7f9fb 360px, #edf2f6 100%),
+                linear-gradient(90deg, rgba(43, 60, 90, 0.055) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(43, 60, 90, 0.045) 1px, transparent 1px);
+            background-size: auto, 72px 72px, 72px 72px;
+            background-attachment: fixed;
+            letter-spacing: 0;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid rgba(43, 60, 90, 0.16);
+            box-shadow: 0 10px 34px rgba(16, 26, 41, 0.08);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 0.9rem clamp(18px, 3vw, 34px);
+        }
+
+        .header-container {
+            width: min(100%, 1180px);
+            gap: clamp(18px, 3vw, 34px);
+        }
+
+        .logo {
+            max-width: 228px;
+        }
+
+        .nav-menu {
+            gap: clamp(16px, 2.4vw, 28px);
+        }
+
+        .nav-menu a {
+            position: relative;
+            color: rgba(24, 34, 53, 0.78);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            padding: 10px 0;
+        }
+
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 4px;
+            height: 1px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.22s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .header-btn {
+            color: #ffffff;
+            background: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 3px;
+            padding: 10px 18px;
+            box-shadow: 0 12px 24px rgba(43, 60, 90, 0.18);
+        }
+
+        .header-btn:hover {
+            background: #1f2d45;
+            border-color: #1f2d45;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .container {
+            width: 100%;
+            max-width: none;
+            padding: 0;
+        }
+
+        section {
+            position: relative;
+            overflow: hidden;
+            background: var(--surface-color);
+            border: 1px solid var(--line-color);
+            border-left: 0;
+            border-right: 0;
+            border-radius: 0;
+            box-shadow: var(--soft-shadow);
+            margin-bottom: 0;
+        }
+
+        .container > section {
+            padding-inline: var(--page-gutter);
+        }
+
+        .container > .grid {
+            gap: 0 !important;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color) 24%, transparent 58%);
+            opacity: 0.9;
+        }
+
+        h2 {
+            position: relative;
+            border-bottom: 0;
+            color: var(--primary-color);
+            font-size: clamp(1.35rem, 1.7vw, 1.75rem);
+            line-height: 1.22;
+            font-weight: 750;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 86px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), rgba(0, 179, 227, 0));
+        }
+
+        .hero {
+            isolation: isolate;
+            text-align: left;
+            padding: clamp(58px, 7.5vw, 102px) var(--page-gutter);
+            margin-bottom: 0;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-left: 0;
+            border-right: 0;
+            border-radius: 0;
+            background:
+                linear-gradient(120deg, #162238 0%, var(--primary-color) 56%, #203752 100%);
+            box-shadow: 0 30px 70px rgba(16, 26, 41, 0.24);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-image:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+            background-size: 70px 70px;
+            opacity: 0.48;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: -1px;
+            right: -12%;
+            width: 48%;
+            height: calc(100% + 2px);
+            background: linear-gradient(115deg, transparent 8%, rgba(0, 179, 227, 0.2), rgba(255, 255, 255, 0.06));
+            clip-path: polygon(34% 0, 100% 0, 70% 100%, 0 100%);
+        }
+
+        .hero h1 {
+            max-width: 860px;
+            margin-bottom: 24px;
+            color: #ffffff;
+            font-size: clamp(2.2rem, 4.4vw, 4.85rem);
+            line-height: 1.02;
+            font-weight: 780;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 0 34px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: clamp(1rem, 1.35vw, 1.18rem);
+        }
+
+        .btn {
+            border-radius: 3px;
+            border: 1px solid transparent;
+            background: var(--primary-color);
+            box-shadow: 0 14px 28px rgba(43, 60, 90, 0.17);
+            font-weight: 750;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #20304a;
+            box-shadow: 0 18px 34px rgba(43, 60, 90, 0.22);
+            transform: translateY(-1px);
+        }
+
+        .hero .btn {
+            background: var(--accent-color);
+            color: #061827;
+            border-color: rgba(255, 255, 255, 0.24);
+            box-shadow: 0 18px 34px rgba(0, 179, 227, 0.26);
+        }
+
+        .hero .btn:hover,
+        .footer-section .btn:hover {
+            background: #14c6f5;
+            color: #061827;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0;
+            padding: 0 var(--page-gutter);
+            margin-top: 0;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid rgba(43, 60, 90, 0.13);
+            border-left: 0;
+            border-right: 0;
+            border-radius: 0;
+            box-shadow: var(--premium-shadow);
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .stat-box {
+            min-width: 0;
+            padding: clamp(24px, 2.6vw, 34px) clamp(18px, 2vw, 28px);
+            border-right: 1px solid rgba(43, 60, 90, 0.11);
+        }
+
+        .stat-box:last-child {
+            border-right: 0;
+        }
+
+        .stat-number {
+            display: inline-block;
+            position: relative;
+            color: var(--primary-color);
+            font-size: clamp(2.1rem, 3vw, 3.15rem);
+            font-weight: 800;
+            letter-spacing: 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-number::after {
+            content: "";
+            display: block;
+            width: 44%;
+            height: 2px;
+            margin: 10px auto 0;
+            background: var(--accent-color);
+        }
+
+        .stat-label {
+            margin-top: 10px;
+            color: var(--muted-color);
+            font-size: 0.76rem;
+            letter-spacing: 0.11em;
+            line-height: 1.45;
+        }
+
+        .ticker-wrap {
+            background: linear-gradient(90deg, #182235, var(--primary-color));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-left: 0;
+            border-right: 0;
+            border-radius: 0;
+            box-shadow: 0 16px 36px rgba(16, 26, 41, 0.13);
+            padding: 13px 0;
+            margin-bottom: 0;
+        }
+
+        .ticker-wrap::before {
+            background: linear-gradient(to right, #182235, transparent);
+        }
+
+        .ticker-wrap::after {
+            background: linear-gradient(to left, var(--primary-color), transparent);
+        }
+
+        .ticker-item {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+        }
+
+        .ticker-item span {
+            color: var(--accent-color);
+        }
+
+        .grid {
+            gap: 22px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid rgba(43, 60, 90, 0.13);
+            border-top: 1px solid rgba(43, 60, 90, 0.13);
+            border-radius: 5px;
+            box-shadow: none;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.28s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 179, 227, 0.34);
+            box-shadow: 0 18px 38px rgba(43, 60, 90, 0.12);
+            transform: translateY(-4px);
+            background: #ffffff;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            font-size: 1.08rem;
+            line-height: 1.32;
+        }
+
+        .card p,
+        section p {
+            color: var(--muted-color);
+        }
+
+        .card-icon {
+            display: inline-flex;
+            width: 42px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            border: 1px solid rgba(43, 60, 90, 0.14);
+            border-radius: 4px;
+            background: linear-gradient(180deg, #ffffff, var(--surface-muted));
+            filter: grayscale(1);
+            opacity: 0.82;
+            font-size: 1.2rem;
+        }
+
+        .card > div[style*="font-size: 0.8rem"] {
+            letter-spacing: 0.13em !important;
+        }
+
+        .card[style*="border: 2px dashed"] {
+            background: linear-gradient(180deg, rgba(0, 179, 227, 0.06), #ffffff) !important;
+            border: 1px solid rgba(0, 179, 227, 0.34) !important;
+        }
+
+        .card[style*="border: 2px dashed"]::before {
+            transform: scaleX(1);
+        }
+
+        .list-items li {
+            padding: 16px 0;
+            border-bottom-color: rgba(43, 60, 90, 0.1);
+        }
+
+        .list-items .date {
+            color: var(--primary-color);
+            letter-spacing: 0.04em;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px;
+        }
+
+        .member-logo {
+            justify-self: stretch;
+            width: 100%;
+            max-width: none;
+            height: 84px;
+            max-height: none;
+            padding: 16px 20px;
+            background: #ffffff;
+            border: 1px solid rgba(43, 60, 90, 0.12);
+            border-radius: 4px;
+            box-shadow: 0 10px 24px rgba(43, 60, 90, 0.06);
+            filter: grayscale(100%) contrast(1.04);
+            opacity: 0.78;
+        }
+
+        .member-logo:hover {
+            filter: grayscale(0%) contrast(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 34px rgba(43, 60, 90, 0.12);
+        }
+
+        .leader-card {
+            background: #ffffff;
+            border: 1px solid rgba(43, 60, 90, 0.13);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 5px;
+            box-shadow: 0 12px 28px rgba(43, 60, 90, 0.07);
+        }
+
+        .portrait-placeholder {
+            background: linear-gradient(145deg, #e5ebf0, #ffffff);
+            border: 1px solid rgba(43, 60, 90, 0.16);
+            box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.66), 0 10px 22px rgba(43, 60, 90, 0.1);
+        }
+
+        .form-group label {
+            color: var(--primary-color);
+            letter-spacing: 0.01em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            border: 1px solid rgba(43, 60, 90, 0.18);
+            border-radius: 3px;
+            background-color: #ffffff;
+            padding: 13px 15px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 179, 227, 0.12), 0 10px 24px rgba(43, 60, 90, 0.08);
+        }
+
+        #application {
+            border-color: rgba(0, 179, 227, 0.24);
+            box-shadow: 0 24px 64px rgba(43, 60, 90, 0.14);
+        }
+
+        footer {
+            background:
+                linear-gradient(135deg, #162238 0%, var(--primary-color) 72%, #203752 100%);
+            border-top: 1px solid rgba(0, 179, 227, 0.9);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-content {
+            width: min(100%, 1180px);
+        }
+
+        .footer-section h2 {
+            border-bottom: 0;
+        }
+
+        .footer-section h2::after {
+            background: var(--accent-color);
+        }
+
+        .footer-section .btn {
+            background: var(--accent-color);
+            color: #061827;
+        }
+
+        footer .form-group input,
+        footer .form-group textarea {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.24) !important;
+            color: #ffffff !important;
+        }
+
+        footer .form-group input::placeholder,
+        footer .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.68);
+        }
+
+        @media (max-width: 900px) {
+            .stats-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .stat-box:nth-child(-n + 2) {
+                border-bottom: 1px solid rgba(43, 60, 90, 0.11);
+            }
+
+            .stat-box:nth-child(2n) {
+                border-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                position: static;
+            }
+
+            .header-container {
+                gap: 14px;
+            }
+
+            .nav-menu a {
+                font-size: 0.72rem;
+            }
+
+            .hero {
+                padding: 46px 24px 58px;
+            }
+
+            .hero::after {
+                opacity: 0.42;
+            }
+
+            .stat-box {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .container {
+                width: 100%;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                margin-top: 0;
+            }
+
+            .stat-box,
+            .stat-box:nth-child(2n) {
+                border-right: 0;
+                border-bottom: 1px solid rgba(43, 60, 90, 0.11);
+            }
+
+            .stat-box:last-child {
+                border-bottom: 0;
+            }
+
+            section {
+                padding: 24px 20px;
+            }
+        }
+
+        /* Premium layout refinement: full canvas, consistent content rhythm */
+        :root {
+            --content-max: 1180px;
+            --content-edge: max(20px, calc((100vw - var(--content-max)) / 2));
+            --section-y: clamp(56px, 7vw, 92px);
+            --section-gap: clamp(26px, 4vw, 48px);
+            --card-radius: 7px;
+        }
+
+        body {
+            background-color: #eef3f7;
+            background-image:
+                linear-gradient(180deg, #e3ebf2 0%, #f8fafc 460px, #eef3f7 100%),
+                linear-gradient(90deg, rgba(43, 60, 90, 0.045) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(43, 60, 90, 0.035) 1px, transparent 1px);
+            background-size: auto, 96px 96px, 96px 96px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: none;
+            padding: 0 0 clamp(48px, 6vw, 82px);
+        }
+
+        .container > .hero {
+            padding: clamp(74px, 8vw, 118px) var(--content-edge) clamp(88px, 9vw, 132px);
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .container > .hero h1,
+        .container > .hero p {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .stats-container {
+            width: auto;
+            margin: -42px var(--content-edge) var(--section-gap);
+            padding: 0;
+            border: 1px solid rgba(43, 60, 90, 0.12);
+            border-radius: var(--card-radius);
+            box-shadow: 0 24px 70px rgba(18, 29, 45, 0.15);
+        }
+
+        .ticker-wrap {
+            width: auto;
+            margin: 0 var(--content-edge) var(--section-gap);
+            border: 0;
+            border-radius: var(--card-radius);
+            box-shadow: 0 18px 46px rgba(18, 29, 45, 0.12);
+        }
+
+        .container > section:not(.hero) {
+            margin: 0;
+            padding: var(--section-y) var(--content-edge);
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+        }
+
+        .container > section:not(.hero)::before {
+            display: none;
+        }
+
+        .container > section:not(.hero) + section:not(.hero) {
+            padding-top: clamp(28px, 4.6vw, 64px);
+        }
+
+        .container > .grid {
+            margin: var(--section-gap) var(--content-edge);
+            gap: clamp(22px, 3vw, 30px) !important;
+            align-items: stretch;
+        }
+
+        .container > .grid > section {
+            margin: 0;
+            padding: clamp(32px, 4vw, 46px);
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(43, 60, 90, 0.12);
+            border-radius: var(--card-radius);
+            box-shadow: 0 18px 48px rgba(18, 29, 45, 0.08);
+            overflow: hidden;
+        }
+
+        .container > .grid > section::before {
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), rgba(0, 179, 227, 0));
+        }
+
+        .grid {
+            gap: clamp(20px, 2.6vw, 28px);
+        }
+
+        h2 {
+            max-width: 900px;
+            margin-bottom: clamp(24px, 3vw, 34px);
+        }
+
+        .card,
+        .leader-card,
+        .member-logo {
+            border-radius: var(--card-radius);
+        }
+
+        .card-icon {
+            font-size: 0;
+            background: linear-gradient(180deg, #ffffff, #f2f6f9);
+        }
+
+        .card-icon::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--accent-color);
+            transform: rotate(45deg);
+        }
+
+        .card {
+            padding: clamp(24px, 3vw, 32px);
+            background: rgba(255, 255, 255, 0.92);
+            border-color: rgba(43, 60, 90, 0.11);
+            box-shadow: 0 12px 34px rgba(18, 29, 45, 0.055);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 52px rgba(18, 29, 45, 0.11);
+        }
+
+        .list-items li {
+            gap: 18px;
+        }
+
+        .list-items .date {
+            min-width: 92px;
+        }
+
+        #application {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+        }
+
+        #application h2 {
+            max-width: var(--content-max);
+        }
+
+        #application form {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: clamp(28px, 4vw, 44px);
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(0, 179, 227, 0.2);
+            border-radius: var(--card-radius);
+            box-shadow: 0 24px 64px rgba(18, 29, 45, 0.13);
+        }
+
+        #documents {
+            padding-top: clamp(36px, 5vw, 68px);
+        }
+
+        footer {
+            margin-top: 0;
+        }
+
+        @media (max-width: 900px) {
+            .stats-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .container > .grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --content-edge: clamp(18px, 5vw, 30px);
+                --section-y: clamp(44px, 8vw, 66px);
+            }
+
+            .container > .hero {
+                padding: 58px var(--content-edge) 76px;
+            }
+
+            .stats-container {
+                margin-top: -26px;
+            }
+
+            .container > .grid > section {
+                padding: 28px 22px;
+            }
+
+            #application form {
+                padding: 26px 20px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+                margin-top: -18px;
+            }
+
+            .ticker-item {
+                font-size: 0.72rem;
+                letter-spacing: 0.1em;
+                padding: 0 22px;
+            }
+
+            .list-items .date {
+                min-width: 0;
+            }
+        }
+
+        /* Statistics reveal and slot-machine number animation */
+        .stats-container {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(34px);
+            filter: blur(8px);
+            transition:
+                opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform, filter;
+        }
+
+        .stats-container.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .stats-container .stat-box {
+            opacity: 0;
+            transform: translateY(18px);
+            transition:
+                opacity 0.62s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stats-container.is-visible .stat-box {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stats-container.is-visible .stat-box:nth-child(1) { transition-delay: 0.04s; }
+        .stats-container.is-visible .stat-box:nth-child(2) { transition-delay: 0.11s; }
+        .stats-container.is-visible .stat-box:nth-child(3) { transition-delay: 0.18s; }
+        .stats-container.is-visible .stat-box:nth-child(4) { transition-delay: 0.25s; }
+
+        .stat-number {
+            overflow: visible;
+        }
+
+        .stat-number-value {
+            display: inline-flex;
+            align-items: flex-start;
+            height: 1em;
+            overflow: hidden;
+            line-height: 1;
+            vertical-align: bottom;
+        }
+
+        .slot-digit {
+            display: inline-block;
+            height: 1em;
+            min-width: 0.58em;
+            overflow: hidden;
+            line-height: 1;
+        }
+
+        .slot-track {
+            display: flex;
+            flex-direction: column;
+            transform: translateY(calc(var(--slot-start) * -1em));
+            will-change: transform;
+        }
+
+        .slot-track span {
+            display: block;
+            height: 1em;
+            line-height: 1;
+        }
+
+        .stats-container.is-visible .slot-track {
+            animation: stat-slot-roll 1.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: var(--slot-delay);
+        }
+
+        .slot-static {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(-0.32em);
+            transition:
+                opacity 0.36s ease,
+                transform 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--slot-delay);
+        }
+
+        .stats-container.is-visible .slot-static {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes stat-slot-roll {
+            from {
+                transform: translateY(calc(var(--slot-start) * -1em));
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .stats-container,
+            .stats-container .stat-box,
+            .slot-static {
+                transition: none;
+                filter: none;
+            }
+
+            .stats-container.is-visible .slot-track {
+                animation: none;
+            }
+        }
+    
+        .members-grid .member-link {
+            display: block;
+            width: 100%;
+            border-radius: var(--card-radius);
+            text-decoration: none;
+        }
+
+        .members-grid .member-link:focus-visible {
+            outline: 3px solid rgba(0, 179, 227, 0.35);
+            outline-offset: 4px;
+        }
+
+        .members-grid .member-link .member-logo {
+            display: block;
+        }
+
+        .members-grid .member-link:hover .member-logo {
+            filter: grayscale(0%) contrast(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 34px rgba(43, 60, 90, 0.12);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <img src="./MAFB.png" alt="Межотраслевая ассоциация функциональная безопасность" class="logo">
+            <ul class="nav-menu">
+                <li><a href="#about">Об ассоциации</a></li>
+                <li><a href="#activities">Деятельность</a></li>
+                <li><a href="knowledge.html">База знаний</a></li>
+                <li><a href="#members">Учредители</a></li>
+                <li><a href="#documents">Документы</a></li>
+            </ul>
+            <a href="#application" class="header-btn">Вступить</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section class="hero">
+            <h1>Функциональная безопасность — единый язык всех отраслей</h1>
+            <p>Межотраслевая ассоциация функциональная безопасность — платформа для формирования национальной политики, разработки стандартов и внедрения передовых методологий.</p>
+            <a href="#application" class="btn">Подать заявку на вступление</a>
+        </section>
+
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Лет опыта экспертов</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Центров компетенций</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">120+</div>
+                <div class="stat-label">Реализованных проектов</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Обученных и сертифицированных специалистов</div>
+            </div>
+        </div>
+        
+        <div class="ticker-wrap">
+            <div class="ticker-track">
+                <div class="ticker-group">
+                    <div class="ticker-item">ГОСТ Р МЭК 61508 (Базовый стандарт) <span>•</span></div>
+                    <div class="ticker-item">ГОСТ Р МЭК 61511 (Промышленность) <span>•</span></div>
+                    <div class="ticker-item">ISO 26262 (Автомобильная отрасль) <span>•</span></div>
+                    <div class="ticker-item">МАФБ <span>•</span></div>
+                    <div class="ticker-item">IEC 62061 (Машиностроение) <span>•</span></div>
+                </div>
+                <div class="ticker-group" aria-hidden="true">
+                    <div class="ticker-item">ГОСТ Р МЭК 61508 (Базовый стандарт) <span>•</span></div>
+                    <div class="ticker-item">ГОСТ Р МЭК 61511 (Промышленность) <span>•</span></div>
+                    <div class="ticker-item">ISO 26262 (Автомобильная отрасль) <span>•</span></div>
+                    <div class="ticker-item">МАФБ <span>•</span></div>
+                    <div class="ticker-item">IEC 62061 (Машиностроение) <span>•</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <section id="about">
+            <h2>Цели создания и деятельности</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <span class="card-icon">🤝</span>
+                    <h3>Консолидация отрасли</h3>
+                    <p>Объединение усилий организаций для формирования единой национальной политики в области функциональной безопасности.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">📈</span>
+                    <h3>Повышение зрелости</h3>
+                    <p>Рост конкурентоспособности бизнеса, развитие инженерной культуры и компетенций специалистов.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🔬</span>
+                    <h3>Научно-техническое развитие</h3>
+                    <p>Содействие научным исследованиям, разработка отечественной нормативной базы и её экономически обоснованное применение.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">⭐</span>
+                    <h3>Престиж профессии</h3>
+                    <p>Повышение статуса профессиональной деятельности инженеров и аналитиков в сфере функциональной безопасности.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities">
+            <h2>Направления деятельности и компетенции</h2>
+            <p style="margin-bottom: 25px; color: #475569; max-width: 800px;">
+                Ассоциация объединяет лидеров рынка, формируя замкнутую экосистему экспертизы: от разработки базового программного обеспечения и стандартов до проведения испытаний, сертификации и внедрения систем на объектах.
+            </p>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                
+                <div class="card">
+                    <div style="font-size: 0.8rem; font-weight: bold; color: var(--accent-color); text-transform: uppercase; margin-bottom: 5px;">ТК 058</div>
+                    <h3>Техническое регулирование</h3>
+                    <p>Разработка, экспертиза и актуализация национальной нормативной базы (ГОСТ Р МЭК 61508, 61511 и др.) с целью формирования единой технической политики в РФ.</p>
+                </div>
+
+                <div class="card">
+                    <div style="font-size: 0.8rem; font-weight: bold; color: var(--accent-color); text-transform: uppercase; margin-bottom: 5px;">СЦ «ЭНДЬЮРЕНС»</div>
+                    <h3>Сертификация, аудит и обучение</h3>
+                    <p>Независимая сертификация оборудования на уровни полноты безопасности (SIL), проведение исследований HAZOP, LOPA, FTA и повышение квалификации инженеров.</p>
+                </div>
+
+                <div class="card">
+                    <div style="font-size: 0.8rem; font-weight: bold; color: var(--accent-color); text-transform: uppercase; margin-bottom: 5px;">НИЦ ФБ</div>
+                    <h3>Научно-испытательная база</h3>
+                    <p>Проведение независимых стендовых и лабораторных испытаний программно-аппаратных комплексов и компонентов ПАЗ на надежность и отказобезопасность.</p>
+                </div>
+
+                <div class="card">
+                    <div style="font-size: 0.8rem; font-weight: bold; color: var(--accent-color); text-transform: uppercase; margin-bottom: 5px;">СВД ВД</div>
+                    <h3>Безопасное программное обеспечение</h3>
+                    <p>Создание и внедрение защищенных операционных систем реального времени (ОСРВ) и платформенных IT-решений для программируемых электронных систем.</p>
+                </div>
+
+                <div class="card">
+                    <div style="font-size: 0.8rem; font-weight: bold; color: var(--accent-color); text-transform: uppercase; margin-bottom: 5px;">ЭКВАРТА</div>
+                    <h3>Инжиниринг и интеграция</h3>
+                    <p>Проектирование систем противоаварийной защиты, разработка эксплуатационной документации и практическая реализация контуров безопасности на ОПО.</p>
+                </div>
+
+                <div class="card" style="border: 2px dashed var(--accent-color); background: rgba(0, 179, 227, 0.02); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="font-size: 0.8rem; font-weight: bold; color: var(--accent-color); text-transform: uppercase; margin-bottom: 5px;">Новые возможности</div>
+                        <h3>Стать участником</h3>
+                        <p>Приглашаем к сотрудничеству экспертные организации, научно-исследовательские центры и разработчиков ПО в сфере функциональной безопасности.</p>
+                    </div>
+                    <a href="#application" style="color: var(--primary-color); font-weight: 600; text-decoration: none; margin-top: 15px; font-size: 0.95rem;">Подать заявку →</a>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="grid grid-2" style="gap: 25px;">
+            <section id="knowledge">
+                <h2>База знаний и публикации</h2>
+                <ul class="list-items">
+                    <li>
+                        <span class="date">Май 2026</span>
+                        <div>ОБЗОР СТАНДАРТОВ ИНТИ S.90.15-2023 и S.QS.6-2024</div>
+                    </li>
+                    <li>
+                        <span class="date">Апр 2026</span>
+                        <div>ОШИБКИ ПРИ АНАЛИЗЕ РИСКОВ И НАЗНАЧЕНИИ УПБ КОНТУРОВ ПАЗ</div>
+                    </li>
+                    <li>
+                        <span class="date">Мар 2026</span>
+                        <div>Новая версия стандарта по искробезопасным цепям ГОСТ 31610.11-2025</div>
+                    </li>
+                    <li>
+                        <span class="date">Фев 2026</span>
+                        <div>МЕТОДЫ НАЗНАЧЕНИЯ УРОВНЯ ПОЛНОТЫ БЕЗОПАСНОСТИ</div>
+                    </li>
+                </ul>
+                <a href="knowledge.html" style="display: inline-block; margin-top: 15px; color: var(--accent-color); font-weight: 600; text-decoration: none;">Все материалы →</a>
+            </section>
+
+            <section id="calendar">
+                <h2>Календарь мероприятий</h2>
+                <ul class="list-items">
+                    <li>
+                        <span class="date">09 Сент</span>
+                        <div><strong>Межотраслевой форум по функциональной безопасности</strong><br><small style="color: #64748b;">Москва, КВЦ «Экспоцентр»</small></div>
+                    </li>
+                    <li>
+                        <span class="date">21 Май</span>
+                        <div>Семинар: «Разработка ПО начальной загрузки ЗОСРВ "Нейтрино"»<br><small style="color: #64748b;">Санкт-Петербург / Онлайн</small></div>
+                    </li>
+                    <li>
+                        <span class="date">10 Июл</span>
+                        <div>Ежеквартальный съезд участников ассоциации<br><small style="color: #64748b;">Москва</small></div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <section id="benefits">
+            <h2>Преимущества вступления в ассоциацию</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>Закрытая база данных</h3>
+                    <p>Доступ к библиотеке шаблонов, чек-листов и проприетарных методик.</p>
+                </div>
+                <div class="card">
+                    <h3>B2B Нетворкинг</h3>
+                    <p>Прямой контакт с техническими директорами и ведущими риск-аналитиками крупнейших промышленных предприятий.</p>
+                </div>
+                <div class="card">
+                    <h3>Экспертная поддержка</h3>
+                    <p>Консультации по внедрению систем противоаварийной защиты (ПАЗ) и прохождению государственной экспертизы.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="members">
+            <h2>Учредители ассоциации</h2>
+            <div class="members-grid">
+                <a href="https://endce.ru/" class="member-link" target="_blank" rel="noopener noreferrer" aria-label="Перейти на сайт ЭНДЬЮРЕНС">
+                    <img src="./500-c323074f89fcf112e1da52f5a43741e3.png" alt="Учредитель ассоциации" class="member-logo">
+                </a>
+                <a href="https://kpda.ru/" class="member-link" target="_blank" rel="noopener noreferrer" aria-label="Перейти на сайт КПДА">
+                    <img src="./Gemini_Generated_Image_aibh4daibh4daibh.png" alt="Учредитель ассоциации" class="member-logo">
+                </a>
+                <a href="https://ekvarta.ru/" class="member-link" target="_blank" rel="noopener noreferrer" aria-label="Перейти на сайт Экварта">
+                    <img src="./Logo_ekvarta.png" alt="Экварта" class="member-logo">
+                </a>
+                <a href="https://fs.center/" class="member-link" target="_blank" rel="noopener noreferrer" aria-label="Перейти на сайт НИЦ ФБ">
+                    <img src="./НИЦ ФБ.png" alt="НИЦ ФБ" class="member-logo">
+                </a>
+                <a href="https://61508.ru/tk-058/" class="member-link" target="_blank" rel="noopener noreferrer" aria-label="Перейти на сайт ТК 058">
+                    <img src="./Рисунок3.png" alt="Учредитель ассоциации" class="member-logo">
+                </a>
+            
+            </div>
+        </section>
+
+        <section id="leadership">
+            <h2>Руководство ассоциации</h2>
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <div class="portrait-placeholder">[Фото]</div>
+                    <strong>[ФИО]</strong><br>
+                    <span style="color: #64748b; font-size: 0.95rem;">Президент</span>
+                </div>
+                <div class="leader-card">
+                    <div class="portrait-placeholder">[Фото]</div>
+                    <strong>[ФИО]</strong><br>
+                    <span style="color: #64748b; font-size: 0.95rem;">Исполнительный директор</span>
+                </div>
+                <div class="leader-card">
+                    <div class="portrait-placeholder">[Фото]</div>
+                    <strong>[ФИО]</strong><br>
+                    <span style="color: #64748b; font-size: 0.95rem;">Ревизор</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="documents">
+            <h2>Учредительные документы</h2>
+            <p style="margin-bottom: 20px; color: #475569;">Ознакомьтесь с официальными документами, регламентирующими деятельность нашей ассоциации.</p>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="./%D0%A3%D1%81%D1%82%D0%B0%D0%B2%20%D0%BE%D0%BA%D0%BE%D0%BD%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D1%8F.pdf" class="btn" download>📄 Скачать Устав Ассоциации (PDF)</a>
+            </div>
+        </section>
+
+        <section id="application">
+            <h2>Заявка на вступление</h2>
+            <form id="membershipForm" class="js-google-sheet-form" action="#" method="POST" data-form-type="membership">
+                <input type="hidden" name="formType" value="membership">
+                <div class="grid grid-2" style="margin-bottom: 0;">
+                    <div class="form-group">
+                        <label for="company">Наименование юридического лица:</label>
+                        <input type="text" id="company" name="company" placeholder="ООО «ПромБезопасность»" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rep">ФИО представителя:</label>
+                        <input type="text" id="rep" name="rep" placeholder="Иванов Иван Иванович" required>
+                    </div>
+                </div>
+                <div class="grid grid-2" style="margin-bottom: 0;">
+                    <div class="form-group">
+                        <label for="exp">Сфера деятельности и опыт (лет):</label>
+                        <input type="text" id="exp" name="exp" placeholder="Например: Проектирование АСУ ТП, 10 лет" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Контактный E-mail / Телефон:</label>
+                        <input type="text" id="contact" name="contact" placeholder="info@company.ru / +7 (999) 000-00-00" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Дополнительная информация (опционально):</label>
+                    <textarea id="comment" name="comment" rows="3" placeholder="Укажите, в каких рабочих группах вы хотели бы принять участие..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem; padding: 15px;">Отправить заявку</button>
+                <p class="form-status" aria-live="polite"></p>
+            </form>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h2 style="font-size: 1.2rem; margin-bottom: 15px; padding-bottom: 10px;">Контакты</h2>
+                <p><strong>Адрес:</strong> 196128, г. Санкт-Петербург, вн.тер.г. Муниципальный округ Пулковский меридиан, ул. Кузнецовская, д. 19, литера А</p>
+                <p><strong>Телефон:</strong> +7-495-799-07-93</p>
+                <p><strong>Email:</strong> av@iafs.ru</p>
+                <p style="margin-top: 20px; opacity: 0.6; font-size: 0.85rem;">© 2026 Межотраслевая ассоциация функциональная безопасность. Все права защищены.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h2 style="font-size: 1.2rem; margin-bottom: 15px; padding-bottom: 10px;">Обратная связь</h2>
+                <form id="feedbackForm" class="js-google-sheet-form" action="#" method="POST" data-form-type="feedback">
+                    <input type="hidden" name="formType" value="feedback">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Ваше имя" required style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Ваш E-mail" required style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="2" placeholder="Сообщение" required style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="padding: 10px 20px; font-size: 0.95rem;">Отправить</button>
+                    <p class="form-status" aria-live="polite"></p>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function initStatsReveal() {
+            const stats = document.querySelector(".stats-container");
+            if (!stats) return;
+
+            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const numbers = stats.querySelectorAll(".stat-number");
+
+            if (!prefersReducedMotion) {
+                numbers.forEach((number, numberIndex) => {
+                    const value = number.textContent.trim();
+                    const valueWrap = document.createElement("span");
+                    valueWrap.className = "stat-number-value";
+                    valueWrap.setAttribute("aria-hidden", "true");
+
+                    number.setAttribute("aria-label", value);
+                    number.textContent = "";
+
+                    Array.from(value).forEach((char, charIndex) => {
+                        const delay = `${numberIndex * 120 + charIndex * 72}ms`;
+
+                        if (/\d/.test(char)) {
+                            const digit = Number(char);
+                            const slot = document.createElement("span");
+                            const track = document.createElement("span");
+                            const sequence = [char];
+
+                            slot.className = "slot-digit";
+                            track.className = "slot-track";
+
+                            for (let i = 1; i <= 13; i += 1) {
+                                sequence.push(String((digit + i) % 10));
+                            }
+
+                            track.style.setProperty("--slot-start", String(sequence.length - 1));
+                            track.style.setProperty("--slot-delay", delay);
+
+                            sequence.forEach((item) => {
+                                const frame = document.createElement("span");
+                                frame.textContent = item;
+                                track.appendChild(frame);
+                            });
+
+                            slot.appendChild(track);
+                            valueWrap.appendChild(slot);
+                            return;
+                        }
+
+                        const staticChar = document.createElement("span");
+                        staticChar.className = "slot-static";
+                        staticChar.style.setProperty("--slot-delay", delay);
+                        staticChar.textContent = char;
+                        valueWrap.appendChild(staticChar);
+                    });
+
+                    number.appendChild(valueWrap);
+                });
+            }
+
+            let lastScrollY = window.scrollY;
+            let revealed = false;
+
+            const reveal = () => {
+                if (revealed) return;
+                revealed = true;
+                stats.classList.add("is-visible");
+                window.removeEventListener("scroll", handleScroll);
+                window.removeEventListener("wheel", handleWheel);
+                window.removeEventListener("touchmove", handleTouchMove);
+                window.removeEventListener("keydown", handleKeyDown);
+            };
+
+            function handleScroll() {
+                const currentScrollY = window.scrollY;
+                if (currentScrollY > lastScrollY && currentScrollY > 4) {
+                    reveal();
+                    return;
+                }
+                lastScrollY = currentScrollY;
+            }
+
+            function handleWheel(event) {
+                if (event.deltaY > 0) {
+                    reveal();
+                }
+            }
+
+            function handleTouchMove() {
+                if (window.scrollY > 4) {
+                    reveal();
+                }
+            }
+
+            function handleKeyDown(event) {
+                const downKeys = ["ArrowDown", "PageDown", " ", "End"];
+                if (downKeys.includes(event.key)) {
+                    reveal();
+                }
+            }
+
+            if (window.scrollY > 4) {
+                reveal();
+                return;
+            }
+
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            window.addEventListener("wheel", handleWheel, { passive: true });
+            window.addEventListener("touchmove", handleTouchMove, { passive: true });
+            window.addEventListener("keydown", handleKeyDown);
+        })();
+
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwK2kSDBcCFO8w0WPVliFtK9-MaoYmVkWJ_Dxjnv35Oj252KOxLpaQ0PXgIZOIWqrfY/exec";
+
+        const successMessages = {
+            membership: "Заявка отправлена. Мы свяжемся с вами после рассмотрения.",
+            feedback: "Сообщение отправлено. Спасибо за обращение."
+        };
+
+        function setFormStatus(form, message, type) {
+            const status = form.querySelector(".form-status");
+            if (!status) return;
+            status.textContent = message;
+            status.className = "form-status";
+            if (type) status.classList.add(type);
+        }
+
+        function setSubmitState(form, isSubmitting) {
+            const button = form.querySelector("button[type='submit']");
+            if (!button) return;
+            if (!button.dataset.defaultText) {
+                button.dataset.defaultText = button.textContent;
+            }
+            button.disabled = isSubmitting;
+            button.textContent = isSubmitting ? "Отправляем..." : button.dataset.defaultText;
+        }
+
+        document.querySelectorAll(".js-google-sheet-form").forEach((form) => {
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                if (GOOGLE_SCRIPT_URL.includes("PASTE_DEPLOYMENT_ID_HERE")) {
+                    setFormStatus(form, "Укажите URL веб-приложения Google Apps Script в GOOGLE_SCRIPT_URL.", "error");
+                    return;
+                }
+
+                const formType = form.dataset.formType || "";
+                const formData = new FormData(form);
+                formData.set("formType", formType);
+                formData.set("pageUrl", window.location.href);
+
+                setSubmitState(form, true);
+                setFormStatus(form, "", "");
+
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        body: new URLSearchParams(formData)
+                    });
+                    form.reset();
+                    setFormStatus(form, successMessages[formType] || "Данные отправлены.", "success");
+                } catch (error) {
+                    setFormStatus(form, "Не удалось отправить данные. Попробуйте позже или напишите на av@iafs.ru.", "error");
+                } finally {
+                    setSubmitState(form, false);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

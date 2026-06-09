@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База знаний и публикации | МАФБ</title>
+    <style>
+        :root{--primary-color:#2b3c5a;--accent-color:#00b3e3;--secondary-color:#eef3f7;--text-color:#182235;--muted-color:#5b687b;--line-color:rgba(43,60,90,.14);--content-max:1180px;--edge:max(20px,calc((100vw - var(--content-max))/2));--radius:7px;--shadow:0 18px 48px rgba(18,29,45,.09);--shadow-strong:0 28px 76px rgba(18,29,45,.16)}
+        *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text-color);font-family:"Inter","Segoe UI",Arial,sans-serif;line-height:1.65;background:#eef3f7;background-image:linear-gradient(180deg,#e3ebf2 0%,#f8fafc 460px,#eef3f7 100%),linear-gradient(90deg,rgba(43,60,90,.045) 1px,transparent 1px),linear-gradient(180deg,rgba(43,60,90,.035) 1px,transparent 1px);background-size:auto,96px 96px,96px 96px;overflow-x:hidden}a{color:inherit}header{position:sticky;top:0;z-index:100;padding:.9rem clamp(18px,3vw,34px);background:rgba(255,255,255,.92);border-bottom:1px solid rgba(43,60,90,.16);box-shadow:0 10px 34px rgba(16,26,41,.08);backdrop-filter:blur(18px)}.header-container{width:min(100%,var(--content-max));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:clamp(18px,3vw,34px);flex-wrap:wrap}.logo{max-width:228px;width:100%;height:auto;display:block}.nav-menu{display:flex;gap:clamp(16px,2.2vw,26px);list-style:none;margin:0;padding:0;flex-wrap:wrap}.nav-menu a{position:relative;text-decoration:none;color:rgba(24,34,53,.78);font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:10px 0}.nav-menu a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;background:var(--accent-color);transform:scaleX(0);transform-origin:left;transition:.22s}.nav-menu a:hover,.nav-menu a.active{color:var(--primary-color)}.nav-menu a:hover::after,.nav-menu a.active::after{transform:scaleX(1)}.btn,.header-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:11px 18px;color:#fff;background:var(--primary-color);border:1px solid var(--primary-color);border-radius:3px;text-decoration:none;font-weight:750;box-shadow:0 12px 24px rgba(43,60,90,.18);transition:.2s;cursor:pointer}.btn:hover,.header-btn:hover{background:#1f2d45;transform:translateY(-1px);box-shadow:0 18px 34px rgba(43,60,90,.22)}.btn-accent{color:#061827;background:var(--accent-color);border-color:var(--accent-color);box-shadow:0 18px 34px rgba(0,179,227,.22)}.btn-accent:hover{color:#061827;background:#14c6f5}
+        main{padding-bottom:clamp(54px,7vw,92px)}.hero{position:relative;isolation:isolate;padding:clamp(70px,8vw,118px) var(--edge) clamp(74px,8vw,112px);color:#fff;background:linear-gradient(120deg,#162238 0%,var(--primary-color) 58%,#203752 100%);overflow:hidden}.hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(180deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:70px 70px;opacity:.48}.hero::after{content:"";position:absolute;z-index:-1;top:-1px;right:-12%;width:48%;height:calc(100% + 2px);background:linear-gradient(115deg,transparent 8%,rgba(0,179,227,.22),rgba(255,255,255,.06));clip-path:polygon(34% 0,100% 0,70% 100%,0 100%)}.eyebrow{margin:0 0 18px;color:rgba(255,255,255,.72);font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}h1{margin:0 0 24px;max-width:900px;color:#fff;font-size:clamp(2.3rem,4.8vw,5rem);line-height:1.02;font-weight:780}.hero p{max-width:760px;margin:0 0 36px;color:rgba(255,255,255,.82);font-size:clamp(1rem,1.35vw,1.18rem)}.hero-search{display:grid;grid-template-columns:1fr auto;gap:12px;max-width:820px;padding:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);backdrop-filter:blur(14px)}.hero-search input{width:100%;min-height:48px;padding:0 16px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:4px;font:inherit;outline:none}.hero-search input::placeholder{color:rgba(255,255,255,.6)}.hero-search input:focus{border-color:var(--accent-color);box-shadow:0 0 0 3px rgba(0,179,227,.18)}
+        .section{padding:clamp(56px,7vw,90px) var(--edge) 0}.section-header{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:clamp(24px,3vw,34px)}h2{position:relative;margin:0;padding-bottom:16px;color:var(--primary-color);font-size:clamp(1.35rem,1.8vw,1.8rem);line-height:1.22;font-weight:760}h2::after{content:"";position:absolute;left:0;bottom:0;width:86px;height:2px;background:linear-gradient(90deg,var(--accent-color),rgba(0,179,227,0))}.section-note{max-width:540px;margin:0;color:var(--muted-color)}.featured-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.5vw,28px)}.feature-card,.material-card,.filter-panel,.table-wrap,.cta-panel{background:rgba(255,255,255,.94);border:1px solid rgba(43,60,90,.12);border-radius:var(--radius);box-shadow:var(--shadow)}.feature-card{min-height:280px;padding:clamp(26px,3vw,36px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.feature-card.primary{color:#fff;background:linear-gradient(135deg,#182235,var(--primary-color));box-shadow:var(--shadow-strong)}.feature-card.primary::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(0,179,227,.18));pointer-events:none}.feature-card>*{position:relative;z-index:1}.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:18px}.pill{display:inline-flex;align-items:center;min-height:26px;padding:4px 9px;color:var(--primary-color);background:rgba(0,179,227,.08);border:1px solid rgba(0,179,227,.2);border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}.primary .pill{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)}h3{margin:0 0 12px;color:var(--primary-color);font-size:1.08rem;line-height:1.32}.primary h3{color:#fff;font-size:clamp(1.45rem,2.2vw,2rem)}.feature-card p,.material-card p{margin:0;color:var(--muted-color)}.primary p{color:rgba(255,255,255,.78)}        .layout{display:grid;grid-template-columns:290px 1fr;gap:clamp(22px,3vw,34px);align-items:start}.filter-panel{position:sticky;top:92px;padding:22px}.filter-panel h3{margin:0 0 14px;color:var(--primary-color);font-size:1rem}.filter-group+.filter-group{margin-top:24px;padding-top:22px;border-top:1px solid rgba(43,60,90,.1)}.filter-options{display:flex;flex-wrap:wrap;gap:9px}.filter-chip{min-height:34px;padding:7px 11px;color:var(--primary-color);background:#fff;border:1px solid rgba(43,60,90,.14);border-radius:999px;font:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:.18s}.filter-chip:hover,.filter-chip.active{color:#061827;background:var(--accent-color);border-color:var(--accent-color);transform:translateY(-1px)}.materials-top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:18px;color:var(--muted-color)}.reset-btn{padding:0;color:var(--primary-color);background:transparent;border:0;font:inherit;font-weight:800;cursor:pointer}.reset-btn:hover{color:var(--accent-color)}.materials-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,26px)}.material-card{padding:clamp(22px,2.5vw,30px);display:flex;flex-direction:column;min-height:290px;position:relative;overflow:hidden;transition:.22s}.material-card::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,var(--primary-color),var(--accent-color));transform:scaleX(0);transform-origin:left;transition:.24s}.material-card:hover{transform:translateY(-3px);border-color:rgba(0,179,227,.32);box-shadow:0 22px 52px rgba(18,29,45,.11)}.material-card:hover::before{transform:scaleX(1)}.tags{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 22px}.tag{color:var(--muted-color);background:#f2f6f9;border:1px solid rgba(43,60,90,.09);border-radius:999px;padding:4px 8px;font-size:.78rem;font-weight:700}.card-action{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}.material-status{color:var(--muted-color);font-size:.84rem;font-weight:700}.text-link{color:var(--primary-color);font-weight:800;text-decoration:none}.text-link:hover{color:var(--accent-color)}.empty{display:none;padding:36px;color:var(--muted-color);background:rgba(255,255,255,.86);border:1px dashed rgba(43,60,90,.18);border-radius:var(--radius)}.table-wrap{overflow:hidden}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.94)}th,td{padding:18px 20px;border-bottom:1px solid rgba(43,60,90,.1);text-align:left;vertical-align:top}th{color:var(--primary-color);background:#f5f8fb;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}td{color:var(--muted-color)}td strong{color:var(--text-color)}tr:last-child td{border-bottom:0}.cta-panel{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:clamp(30px,4vw,48px);color:#fff;background:linear-gradient(135deg,#182235,var(--primary-color));box-shadow:var(--shadow-strong);overflow:hidden;position:relative}.cta-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 50%,rgba(0,179,227,.18));pointer-events:none}.cta-panel>*{position:relative;z-index:1}.cta-panel h2{color:#fff}.cta-panel h2::after{background:var(--accent-color)}.cta-panel p{margin:18px 0 0;max-width:740px;color:rgba(255,255,255,.78)}footer{padding:48px var(--edge);color:#fff;background:linear-gradient(135deg,#162238 0%,var(--primary-color) 72%,#203752 100%);border-top:1px solid rgba(0,179,227,.9)}.footer-content{max-width:var(--content-max);margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}footer p{margin:0;color:rgba(255,255,255,.72)}@media(max-width:980px){.featured-grid,.layout,.cta-panel,.footer-content{grid-template-columns:1fr}.filter-panel{position:static}.materials-grid{grid-template-columns:1fr}}@media(max-width:720px){header{position:static}.header-container{flex-direction:column;text-align:center}.hero-search{grid-template-columns:1fr}.section-header,.materials-top{align-items:flex-start;flex-direction:column}th,td{padding:14px 12px;font-size:.92rem}}
+    
+        .text-link { background: transparent; border: 0; padding: 0; font: inherit; cursor: pointer; text-align: left; }
+        .access-modal[hidden] { display: none; }
+        .access-modal { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 20px; background: rgba(13, 24, 39, 0.62); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .access-modal-card { width: min(100%, 540px); padding: clamp(26px, 4vw, 38px); background: rgba(255, 255, 255, 0.98); border: 1px solid rgba(43, 60, 90, 0.14); border-radius: var(--radius); box-shadow: 0 30px 80px rgba(13, 24, 39, 0.28); }
+        .access-modal-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
+        .access-modal-head h2 { margin: 0; padding-bottom: 14px; font-size: clamp(1.35rem, 2vw, 1.8rem); }
+        .modal-close { width: 38px; height: 38px; flex: 0 0 auto; color: var(--primary-color); background: #f2f6f9; border: 1px solid rgba(43, 60, 90, 0.12); border-radius: 4px; font-size: 1.3rem; line-height: 1; cursor: pointer; }
+        .modal-close:hover { color: #061827; background: var(--accent-color); border-color: var(--accent-color); }
+        .requested-material { margin: 0 0 22px; padding: 14px 16px; color: var(--primary-color); background: rgba(0, 179, 227, 0.08); border: 1px solid rgba(0, 179, 227, 0.2); border-radius: 4px; font-weight: 700; }
+        .modal-form .form-group { margin-bottom: 18px; }
+        .modal-form label { display: block; margin-bottom: 7px; color: var(--primary-color); font-weight: 700; }
+        .modal-form input { width: 100%; min-height: 46px; padding: 12px 14px; color: var(--text-color); background: #fff; border: 1px solid rgba(43, 60, 90, 0.18); border-radius: 4px; font: inherit; outline: none; }
+        .modal-form input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0, 179, 227, 0.12); }
+        .modal-actions { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 8px; }
+        .modal-status { min-height: 1.35em; margin: 14px 0 0; color: var(--muted-color); font-size: 0.95rem; }
+        .modal-status.success { color: #047857; }
+        .modal-status.error { color: #b91c1c; }
+        @media (max-width: 560px) { .modal-actions { align-items: stretch; flex-direction: column; } .modal-actions .btn { width: 100%; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" aria-label="На главную страницу МАФБ"><img src="./MAFB.png" alt="Межотраслевая ассоциация функциональная безопасность" class="logo"></a>
+            <ul class="nav-menu">
+                <li><a href="index.html#about">Об ассоциации</a></li>
+                <li><a href="index.html#activities">Деятельность</a></li>
+                <li><a href="knowledge.html" class="active">База знаний</a></li>
+                <li><a href="index.html#members">Учредители</a></li>
+                <li><a href="index.html#documents">Документы</a></li>
+            </ul>
+            <a href="index.html#application" class="header-btn">Вступить</a>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <p class="eyebrow">Экспертная библиотека МАФБ</p>
+            <h1>База знаний и публикации</h1>
+            <p>Материалы по функциональной безопасности, промышленным стандартам, анализу рисков, сертификации и внедрению систем противоаварийной защиты.</p>
+            <div class="hero-search">
+                <input id="knowledgeSearch" type="search" placeholder="Поиск по материалам, стандартам и темам" autocomplete="off">
+                <a href="#materials" class="btn btn-accent">К материалам</a>
+            </div>
+        </section>
+        <section class="section" aria-labelledby="featured-title">
+            <div class="section-header"><h2 id="featured-title">Рекомендовано экспертным советом</h2><p class="section-note">Подборка материалов, с которых стоит начинать работу с библиотекой ассоциации.</p></div>
+            <div class="featured-grid">
+                <article class="feature-card primary"><div><div class="meta"><span class="pill">Обзор</span><span class="pill">ИНТИ</span></div><h3>ОБЗОР СТАНДАРТОВ ИНТИ S.90.15-2023 и S.QS.6-2024</h3><p>Ключевые положения стандартов ИНТИ, область применения и ориентиры для практического использования в проектах функциональной безопасности.</p></div><a href="#materials" class="btn btn-accent">Открыть подборку</a></article>
+                <article class="feature-card"><div><div class="meta"><span class="pill">Статья</span><span class="pill">УПБ</span></div><h3>ОШИБКИ ПРИ АНАЛИЗЕ РИСКОВ И НАЗНАЧЕНИИ УПБ КОНТУРОВ ПАЗ</h3><p>Разбор типовых ошибок при формулировании сценариев, оценке защитных мер и назначении уровня полноты безопасности для контуров ПАЗ.</p></div><a href="#materials" class="text-link">Смотреть материал →</a></article>
+            </div>
+        </section>
+        <section class="section" id="materials" aria-labelledby="materials-title">
+            <div class="section-header"><h2 id="materials-title">Материалы библиотеки</h2><p class="section-note">Публикации сгруппированы по типам и темам для проекта, аудита или обучения.</p></div>
+            <div class="layout">
+                <aside class="filter-panel" aria-label="Фильтры материалов">
+                    <div class="filter-group"><h3>Тип материала</h3><div class="filter-options" data-filter-group="type"><button class="filter-chip active" data-value="all">Все</button><button class="filter-chip" data-value="Обзор">Обзоры</button><button class="filter-chip" data-value="Статья">Статьи</button><button class="filter-chip" data-value="Стандарт">Стандарты</button><button class="filter-chip" data-value="Методика">Методики</button></div></div>
+                    <div class="filter-group"><h3>Тематика</h3><div class="filter-options" data-filter-group="topic"><button class="filter-chip active" data-value="all">Все</button><button class="filter-chip" data-value="ИНТИ">ИНТИ</button><button class="filter-chip" data-value="ГОСТ 31610">ГОСТ 31610</button><button class="filter-chip" data-value="Искробезопасность">Искробезопасность</button><button class="filter-chip" data-value="Стандарты">Стандарты</button><button class="filter-chip" data-value="Анализ рисков">Анализ рисков</button><button class="filter-chip" data-value="УПБ">УПБ</button><button class="filter-chip" data-value="SIL">SIL</button><button class="filter-chip" data-value="ПАЗ">ПАЗ</button></div></div>
+                </aside>
+                <div><div class="materials-top"><span id="materialsCount">Материалов: 0</span><button class="reset-btn" type="button" id="resetFilters">Сбросить фильтры</button></div><div class="materials-grid" id="materialsGrid"></div><div class="empty" id="emptyState">По выбранным параметрам материалов пока нет.</div></div>
+            </div>
+        </section>
+        <section class="section" id="standards" aria-labelledby="standards-title">
+            <div class="section-header"><h2 id="standards-title">Стандарты и нормативная база</h2><p class="section-note">Опорная карта стандартов, вокруг которых строятся материалы библиотеки.</p></div>
+            <div class="table-wrap"><table><thead><tr><th>Стандарт</th><th>Область применения</th><th>Что искать в базе</th></tr></thead><tbody>
+                <tr><td><strong>ИНТИ S.90.15-2023 и S.QS.6-2024</strong></td><td>Требования и подходы ИНТИ для оценки, применения и подтверждения соответствия в профильных проектах.</td><td>Ключевые положения, область применения, практические выводы для участников ассоциации.</td></tr>
+                <tr><td><strong>ГОСТ 31610.11-2025</strong></td><td>Искробезопасные электрические цепи и оборудование для применения во взрывоопасных средах.</td><td>Новая редакция, изменения требований, влияние на проектирование и проверку цепей.</td></tr>
+                <tr><td><strong>ГОСТ Р МЭК 61508</strong></td><td>Функциональная безопасность электрических, электронных и программируемых электронных систем.</td><td>Жизненный цикл, требования к ПО, оценка отказов, доказательная база.</td></tr>
+                <tr><td><strong>ГОСТ Р МЭК 61511</strong></td><td>Системы безопасности для технологических процессов в промышленности.</td><td>SIF, SIL, эксплуатация, модификации, периодические проверки.</td></tr>
+                <tr><td><strong>ISO 26262</strong></td><td>Функциональная безопасность автомобильных электрических и электронных систем.</td><td>ASIL, архитектурные ограничения, безопасность встроенного ПО.</td></tr>
+                <tr><td><strong>IEC 62061</strong></td><td>Безопасность машин и систем управления, связанных с безопасностью.</td><td>Оценка рисков, функции безопасности, проектные ограничения.</td></tr>
+            </tbody></table></div>
+        </section>
+        <section class="section" id="request-access"><div class="cta-panel"><div><h2>Доступ к закрытой базе материалов</h2><p>Участники ассоциации получают расширенные методики, экспертные обзоры и подборки по рабочим направлениям.</p></div><a href="index.html#application" class="btn btn-accent">Подать заявку</a></div></section>
+    </main>
+    <footer><div class="footer-content"><p><strong>МАФБ</strong><br>Межотраслевая ассоциация функциональная безопасность</p><p>av@iafs.ru · +7-495-799-07-93</p></div></footer>
+
+    <div class="access-modal" id="accessModal" hidden>
+        <div class="access-modal-card" role="dialog" aria-modal="true" aria-labelledby="accessModalTitle">
+            <div class="access-modal-head">
+                <h2 id="accessModalTitle">Запрос доступа к материалу</h2>
+                <button class="modal-close" type="button" data-modal-close aria-label="Закрыть окно">×</button>
+            </div>
+            <p class="requested-material" id="requestedMaterialText">Материал не выбран</p>
+            <form class="modal-form" id="knowledgeAccessForm">
+                <input type="hidden" name="formType" value="knowledgeAccess">
+                <input type="hidden" name="materialTitle" id="requestedMaterialInput">
+                <div class="form-group">
+                    <label for="accessFullName">ФИО</label>
+                    <input type="text" id="accessFullName" name="fullName" autocomplete="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="accessEmail">E-mail</label>
+                    <input type="email" id="accessEmail" name="email" autocomplete="email" required>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn" type="button" data-modal-close>Отмена</button>
+                    <button class="btn btn-accent" type="submit">Отправить запрос</button>
+                </div>
+                <p class="modal-status" id="knowledgeAccessStatus" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+    <script>
+        const materials=[
+            {title:"ОБЗОР СТАНДАРТОВ ИНТИ S.90.15-2023 и S.QS.6-2024",type:"Обзор",date:"Май 2026",topics:["ИНТИ","Стандарты"],description:"Краткий обзор стандартов ИНТИ S.90.15-2023 и S.QS.6-2024: область применения, ключевые требования и ориентиры для проектов функциональной безопасности.",status:"Экспертный обзор"},
+            {title:"ОШИБКИ ПРИ АНАЛИЗЕ РИСКОВ И НАЗНАЧЕНИИ УПБ КОНТУРОВ ПАЗ",type:"Статья",date:"Апрель 2026",topics:["Анализ рисков","УПБ","ПАЗ"],description:"Разбор типовых ошибок при анализе рисков, формулировании сценариев, выборе защитных мер и назначении УПБ контуров противоаварийной защиты.",status:"Открытая публикация"},
+            {title:"Новая версия стандарта по искробезопасным цепям ГОСТ 31610.11-2025",type:"Стандарт",date:"Март 2026",topics:["ГОСТ 31610","Искробезопасность","Стандарты"],description:"Обзор изменений и практических акцентов новой версии стандарта по искробезопасным электрическим цепям для оборудования во взрывоопасных средах.",status:"Обзор стандарта"},
+            {title:"МЕТОДЫ НАЗНАЧЕНИЯ УРОВНЯ ПОЛНОТЫ БЕЗОПАСНОСТИ",type:"Методика",date:"Февраль 2026",topics:["SIL","УПБ","ПАЗ"],description:"Сравнение подходов к назначению уровня полноты безопасности: от качественных матриц риска до количественных методов и связи с требованиями к функциям безопасности.",status:"Методический материал"}
+        ];
+        const state={type:"all",topic:"all",query:""};
+        const grid=document.querySelector("#materialsGrid"),count=document.querySelector("#materialsCount"),empty=document.querySelector("#emptyState"),search=document.querySelector("#knowledgeSearch"),reset=document.querySelector("#resetFilters");
+        const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbwK2kSDBcCFO8w0WPVliFtK9-MaoYmVkWJ_Dxjnv35Oj252KOxLpaQ0PXgIZOIWqrfY/exec";
+        const norm=(v)=>v.toLowerCase().trim();
+        const attr=(value)=>String(value).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        function match(m){const type=state.type==="all"||m.type===state.type;const topic=state.topic==="all"||m.topics.includes(state.topic);const hay=norm(`${m.title} ${m.type} ${m.date} ${m.description} ${m.topics.join(" ")}`);return type&&topic&&(!state.query||hay.includes(norm(state.query)))}
+        function render(){const items=materials.filter(match);grid.innerHTML=items.map((m)=>`<article class="material-card"><div class="meta"><span class="pill">${m.type}</span><span class="pill">${m.date}</span></div><h3>${m.title}</h3><p>${m.description}</p><div class="tags">${m.topics.map((t)=>`<span class="tag">${t}</span>`).join("")}</div><div class="card-action"><span class="material-status">${m.status}</span><button type="button" class="text-link access-request" data-material="${attr(m.title)}">Запросить доступ →</button></div></article>`).join("");count.textContent=`Материалов: ${items.length}`;empty.style.display=items.length?"none":"block"}
+        document.querySelectorAll(".filter-options").forEach((group)=>group.addEventListener("click",(event)=>{const btn=event.target.closest(".filter-chip");if(!btn)return;state[group.dataset.filterGroup]=btn.dataset.value;group.querySelectorAll(".filter-chip").forEach((chip)=>chip.classList.remove("active"));btn.classList.add("active");render()}));
+        search.addEventListener("input",(event)=>{state.query=event.target.value;render()});
+        reset.addEventListener("click",()=>{state.type="all";state.topic="all";state.query="";search.value="";document.querySelectorAll(".filter-options").forEach((group)=>group.querySelectorAll(".filter-chip").forEach((chip)=>chip.classList.toggle("active",chip.dataset.value==="all")));render()});
+
+        const accessModal = document.querySelector("#accessModal");
+        const accessForm = document.querySelector("#knowledgeAccessForm");
+        const accessStatus = document.querySelector("#knowledgeAccessStatus");
+        const requestedMaterialText = document.querySelector("#requestedMaterialText");
+        const requestedMaterialInput = document.querySelector("#requestedMaterialInput");
+        const fullNameInput = document.querySelector("#accessFullName");
+
+        function openAccessModal(materialTitle) {
+            requestedMaterialText.textContent = `Материал: ${materialTitle}`;
+            requestedMaterialInput.value = materialTitle;
+            accessStatus.textContent = "";
+            accessStatus.className = "modal-status";
+            accessModal.hidden = false;
+            setTimeout(() => fullNameInput.focus(), 0);
+        }
+
+        function closeAccessModal() {
+            accessModal.hidden = true;
+            accessForm.reset();
+            requestedMaterialInput.value = "";
+            accessStatus.textContent = "";
+            accessStatus.className = "modal-status";
+        }
+
+        function setAccessSubmitState(isSubmitting) {
+            const button = accessForm.querySelector('button[type="submit"]');
+            if (!button.dataset.defaultText) button.dataset.defaultText = button.textContent;
+            button.disabled = isSubmitting;
+            button.textContent = isSubmitting ? "Отправляем..." : button.dataset.defaultText;
+        }
+
+        grid.addEventListener("click", (event) => {
+            const button = event.target.closest(".access-request");
+            if (!button) return;
+            openAccessModal(button.dataset.material || "Материал библиотеки");
+        });
+
+        accessModal.addEventListener("click", (event) => {
+            if (event.target === accessModal || event.target.closest("[data-modal-close]")) closeAccessModal();
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !accessModal.hidden) closeAccessModal();
+        });
+
+        accessForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            if (!accessForm.checkValidity()) {
+                accessForm.reportValidity();
+                return;
+            }
+            const formData = new FormData(accessForm);
+            formData.set("formType", "knowledgeAccess");
+            formData.set("pageUrl", window.location.href);
+            setAccessSubmitState(true);
+            accessStatus.textContent = "";
+            accessStatus.className = "modal-status";
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: new URLSearchParams(formData)
+                });
+                accessForm.reset();
+                requestedMaterialInput.value = "";
+                accessStatus.textContent = "Запрос отправлен. Мы свяжемся с вами по указанной почте.";
+                accessStatus.className = "modal-status success";
+            } catch (error) {
+                accessStatus.textContent = "Не удалось отправить запрос. Попробуйте позже или напишите на av@iafs.ru.";
+                accessStatus.className = "modal-status error";
+            } finally {
+                setAccessSubmitState(false);
+            }
+        });
+        render();
+    </script>
+</body>
+</html>
