@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            var cleanPath = window.location.pathname.replace(/\/index\.html$/i, "/");
+            if (cleanPath !== window.location.pathname) {
+                window.location.replace(cleanPath + window.location.search + window.location.hash);
+            }
+        }());
+    </script>
     <title>Межотраслевая ассоциация функциональная безопасность</title>
     <style>
         :root {
@@ -1443,8 +1451,8 @@
             <ul class="nav-menu">
                 <li><a href="#about">Об ассоциации</a></li>
                 <li><a href="#activities">Деятельность</a></li>
-                <li><a href="knowledge.html">База знаний</a></li>
-                <li><a href="forum-registration.html">Форум</a></li>
+                <li><a href="/knowledge/">База знаний</a></li>
+                <li><a href="/forum-registration/">Форум</a></li>
                 <li><a href="#members">Учредители</a></li>
                 <li><a href="#documents">Документы</a></li>
             </ul>
@@ -1607,7 +1615,7 @@
                         <div>МЕТОДЫ НАЗНАЧЕНИЯ УРОВНЯ ПОЛНОТЫ БЕЗОПАСНОСТИ</div>
                     </li>
                 </ul>
-                <a href="knowledge.html" style="display: inline-block; margin-top: 15px; color: var(--accent-color); font-weight: 600; text-decoration: none;">Все материалы →</a>
+                <a href="/knowledge/" style="display: inline-block; margin-top: 15px; color: var(--accent-color); font-weight: 600; text-decoration: none;">Все материалы →</a>
             </section>
 
             <section id="calendar">
@@ -1615,7 +1623,7 @@
                 <ul class="list-items">
                     <li>
                         <span class="date">09 Сент</span>
-                        <div><strong>Межотраслевой форум по функциональной безопасности</strong><br><small style="color: #64748b;">Москва, ВДНХ, Павильон № 38, Бизнес.Техноград</small><br><a href="forum-registration.html" style="display: inline-block; margin-top: 8px; color: var(--accent-color); font-weight: 700; text-decoration: none;">Регистрация на форум →</a></div>
+                        <div><strong>Межотраслевой форум по функциональной безопасности</strong><br><small style="color: #64748b;">Москва, ВДНХ, Павильон № 38, Бизнес.Техноград</small><br><a href="/forum-registration/" style="display: inline-block; margin-top: 8px; color: var(--accent-color); font-weight: 700; text-decoration: none;">Регистрация на форум →</a></div>
                     </li>
                     <li>
                         <span class="date">21 Май</span>
