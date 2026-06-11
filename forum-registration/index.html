@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -388,6 +388,51 @@
             font-size: 0.95rem;
         }
 
+        .previous-forum {
+            display: grid;
+            grid-template-columns: minmax(0, 0.72fr) minmax(420px, 1fr);
+            gap: 28px;
+            align-items: center;
+        }
+
+        .previous-forum-text {
+            min-width: 0;
+        }
+
+        .previous-forum-badge {
+            display: inline-flex;
+            width: fit-content;
+            margin: 0 0 16px;
+            padding: 7px 12px;
+            border: 1px solid rgba(0, 179, 227, 0.28);
+            border-radius: 999px;
+            background: #eef9fc;
+            color: var(--navy);
+            font-size: 0.78rem;
+            font-weight: 850;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .video-frame {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            min-height: 280px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--navy);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
 
 
         .registration-wrap {
@@ -543,6 +588,7 @@
 
         @media (max-width: 980px) {
             .nav a:not(.button) { display: none; }
+            .previous-forum,
             .registration-wrap,
             .route-wrap { grid-template-columns: 1fr; }
             .event-summary { grid-template-columns: 1fr; }
@@ -567,6 +613,7 @@
             .stat:last-child { border-bottom: 0; }
             .program-item { grid-template-columns: 1fr; gap: 8px; }
             .form-grid { grid-template-columns: 1fr; }
+            .video-frame { min-height: auto; }
             .map-card,
             .map-card iframe { min-height: 340px; }
         }
@@ -699,6 +746,27 @@
                     <div class="time">15:30-18:30</div>
                     <div><h3>Фуршет</h3><p>Неформальное общение участников, партнеров и спикеров форума.</p></div>
                 </article>
+            </div>
+        </section>
+
+        <section id="forum-2025">
+            <div class="previous-forum">
+                <div class="previous-forum-text">
+                    <p class="previous-forum-badge">Видеоотчет</p>
+                    <h2>Как это было в 2025 году</h2>
+                    <p class="section-lead">Посмотрите видео с предыдущего форума: деловая программа, выступления экспертов и профессиональное общение участников отрасли.</p>
+                    <a href="#registration" class="button">Принять участие в 2026</a>
+                </div>
+                <div class="video-frame">
+                    <iframe
+                        title="Видео с форума по функциональной безопасности 2025 года"
+                        width="720"
+                        height="405"
+                        src="https://rutube.ru/play/embed/befe8a84035fe40f749fbac88878f22f"
+                        allow="clipboard-write; autoplay"
+                        allowfullscreen
+                    ></iframe>
+                </div>
             </div>
         </section>
 
