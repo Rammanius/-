@@ -331,6 +331,30 @@
             text-align: center;
             border-top: 3px solid var(--primary-color);
         }
+        .leadership-subtitle {
+            position: relative;
+            margin: 34px 0 24px;
+            padding-bottom: 16px;
+            color: var(--primary-color);
+            font-size: clamp(1.35rem, 1.7vw, 1.75rem);
+            line-height: 1.22;
+            font-weight: 750;
+        }
+        .leadership-subtitle::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 86px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), rgba(0, 179, 227, 0));
+        }
+        .presidium-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 300px));
+            gap: 20px;
+            justify-content: center;
+        }
         .portrait-placeholder {
             width: 100px;
             height: 100px;
@@ -344,6 +368,16 @@
             color: var(--primary-color);
             font-size: 0.8rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .portrait-photo {
+            width: min(100%, 260px);
+            height: auto;
+            object-fit: contain;
+            object-position: center;
+            border: 3px solid white;
+            border-radius: 8px;
+            margin: 0 auto 22px auto;
+            box-shadow: 0 12px 26px rgba(43, 60, 90, 0.16);
         }
 
         /* Кнопки и Формы */
@@ -1410,6 +1444,7 @@
                 <li><a href="#about">Об ассоциации</a></li>
                 <li><a href="#activities">Деятельность</a></li>
                 <li><a href="knowledge.html">База знаний</a></li>
+                <li><a href="forum-registration.html">Форум</a></li>
                 <li><a href="#members">Учредители</a></li>
                 <li><a href="#documents">Документы</a></li>
             </ul>
@@ -1580,7 +1615,7 @@
                 <ul class="list-items">
                     <li>
                         <span class="date">09 Сент</span>
-                        <div><strong>Межотраслевой форум по функциональной безопасности</strong><br><small style="color: #64748b;">Москва, КВЦ «Экспоцентр»</small></div>
+                        <div><strong>Межотраслевой форум по функциональной безопасности</strong><br><small style="color: #64748b;">Москва, ВДНХ, Павильон № 38, Бизнес.Техноград</small><br><a href="forum-registration.html" style="display: inline-block; margin-top: 8px; color: var(--accent-color); font-weight: 700; text-decoration: none;">Регистрация на форум →</a></div>
                     </li>
                     <li>
                         <span class="date">21 Май</span>
@@ -1638,19 +1673,34 @@
             <h2>Руководство ассоциации</h2>
             <div class="leadership-grid">
                 <div class="leader-card">
-                    <div class="portrait-placeholder">[Фото]</div>
-                    <strong>[ФИО]</strong><br>
+                    <img src="./Колчин.png" alt="Колчин Александр Федорович" class="portrait-photo">
+                    <strong>Колчин Александр Федорович</strong><br>
                     <span style="color: #64748b; font-size: 0.95rem;">Президент</span>
                 </div>
                 <div class="leader-card">
-                    <div class="portrait-placeholder">[Фото]</div>
-                    <strong>[ФИО]</strong><br>
+                    <img src="./Вервейко.png" alt="Вервейко Александр Юрьевич" class="portrait-photo">
+                    <strong>Вервейко Александр Юрьевич</strong><br>
                     <span style="color: #64748b; font-size: 0.95rem;">Исполнительный директор</span>
                 </div>
                 <div class="leader-card">
                     <div class="portrait-placeholder">[Фото]</div>
-                    <strong>[ФИО]</strong><br>
+                    <strong>Дерябин Игорь Владимирович</strong><br>
                     <span style="color: #64748b; font-size: 0.95rem;">Ревизор</span>
+                </div>
+            </div>
+            <h3 class="leadership-subtitle">Члены Президиума</h3>
+            <div class="presidium-grid">
+                <div class="leader-card">
+                    <img src="./Зыль.png" alt="Зыль Сергей Николаевич" class="portrait-photo">
+                    <strong>Зыль Сергей Николаевич</strong>
+                </div>
+                <div class="leader-card">
+                    <div class="portrait-placeholder">[Фото]</div>
+                    <strong>Горелов Сергей Владиславович</strong>
+                </div>
+                <div class="leader-card">
+                    <div class="portrait-placeholder">[Фото]</div>
+                    <strong>Фефилов Андрей Андреевич</strong>
                 </div>
             </div>
         </section>
@@ -1904,3 +1954,5 @@
     </script>
 </body>
 </html>
+
+
