@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База знаний — МАФБ</title>
+    <meta name="description" content="Экспертные обзоры, статьи, методики и стандарты по функциональной безопасности, разложенные по этапам жизненного цикла.">
+    <meta name="theme-color" content="#1a2740">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="preload" href="../fonts/unbounded-cyrillic-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="wrap">
+        <a class="logo" href="../index.html" aria-label="МАФБ, на главную"><img src="../img/MAFB.png" alt="Межотраслевая ассоциация функциональная безопасность" width="1024" height="388"></a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Меню</button>
+        <nav class="nav" id="nav" aria-label="Основная навигация">
+            <a href="../index.html#cycle">Компетенции</a>
+            <a href="../forum/index.html">Форум</a>
+            <a href="index.html" aria-current="page">База знаний</a>
+            <a href="#standards">Стандарты</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+        <a href="../index.html#join" class="btn">Вступить</a>
+    </div>
+</header>
+
+<main>
+    <section class="page-hero" aria-labelledby="kb-title">
+        <svg class="hero-bracket" viewBox="-110 -110 220 220" aria-hidden="true">
+            <path d="M -86.6 26 L -86.6 -50 L 0 -100 L 86.6 -50 L 86.6 2" fill="none" stroke="#ffffff" stroke-width="18"/>
+            <path d="M 86.6 20 L 86.6 50 L 0 100 L -86.6 50 L -86.6 42" fill="none" stroke="#00b3e3" stroke-width="18"/>
+        </svg>
+        <div class="wrap">
+            <p class="crumbs"><a href="../index.html">МАФБ</a> / База знаний</p>
+            <h1 class="display" id="kb-title">База знаний</h1>
+            <p class="lead">Обзоры, статьи, методики и разборы стандартов от экспертов ассоциации. Материалы разложены по этапам того же контура безопасности, что и работа ассоциации.</p>
+            <div class="kb-search" role="search">
+                <label class="vh" for="q">Поиск по материалам</label>
+                <input id="q" type="search" placeholder="Стандарт, метод или тема" autocomplete="off">
+                <a class="btn" href="#library">Найти</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section mist" aria-labelledby="featured-title">
+        <div class="wrap">
+            <div class="head-split">
+                <h2 class="h2" id="featured-title">Рекомендуем начать с этого</h2>
+                <p class="lead">Два материала, которые эксперты ассоциации советуют прочитать первыми.</p>
+            </div>
+            <div class="featured-mat">
+                <article class="fm big">
+                    <div>
+                        <p class="mat-meta"><b>Обзор</b><span>Нормативная база</span><span>май 2026</span></p>
+                        <h3>Стандарты ИНТИ S.90.15-2023 и S.QS.6-2024: что важно для проектов</h3>
+                        <p>Ключевые положения, область применения и практические ориентиры для проектов функциональной безопасности.</p>
+                    </div>
+                    <button class="btn ask" type="button" data-title="ОБЗОР СТАНДАРТОВ ИНТИ S.90.15-2023 и S.QS.6-2024">Запросить материал</button>
+                </article>
+                <article class="fm small">
+                    <div>
+                        <p class="mat-meta"><b>Статья</b><span>Анализ рисков</span><span>апрель 2026</span></p>
+                        <h3>Типовые ошибки при анализе рисков и назначении УПБ контуров ПАЗ</h3>
+                        <p>Сценарии, защитные меры и назначение уровня полноты безопасности: где ошибаются чаще всего.</p>
+                    </div>
+                    <button class="btn btn-navy ask" type="button" data-title="ОШИБКИ ПРИ АНАЛИЗЕ РИСКОВ И НАЗНАЧЕНИИ УПБ КОНТУРОВ ПАЗ">Запросить материал</button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="library" aria-labelledby="lib-title">
+        <div class="wrap library">
+            <aside class="filter" aria-labelledby="lib-title">
+                <h2 id="lib-title">Этапы контура</h2>
+                <svg class="filter-hex" viewBox="70 70 500 500" aria-hidden="true">
+                    <path class="edge navy" d="M 129.5 350 L 129.5 210 L 320 100 L 510.5 210 L 510.5 298"/>
+                    <path class="edge cyan" d="M 510.5 332 L 510.5 430 L 320 540 L 129.5 430 L 129.5 386"/>
+                    <g class="hn" data-stage="0"><polygon points="320,68 347.7,84 347.7,116 320,132 292.3,116 292.3,84"/><text x="320" y="100">1</text></g>
+                    <g class="hn" data-stage="1"><polygon points="510.5,178 538.2,194 538.2,226 510.5,242 482.8,226 482.8,194"/><text x="510.5" y="210">2</text></g>
+                    <g class="hn" data-stage="2"><polygon points="510.5,398 538.2,414 538.2,446 510.5,462 482.8,446 482.8,414"/><text x="510.5" y="430">3</text></g>
+                    <g class="hn" data-stage="3"><polygon points="320,508 347.7,524 347.7,556 320,572 292.3,556 292.3,524"/><text x="320" y="540">4</text></g>
+                    <g class="hn" data-stage="4"><polygon points="129.5,398 157.2,414 157.2,446 129.5,462 101.8,446 101.8,414"/><text x="129.5" y="430">5</text></g>
+                    <g class="hn" data-stage="5"><polygon points="129.5,178 157.2,194 157.2,226 129.5,242 101.8,226 101.8,194"/><text x="129.5" y="210">6</text></g>
+                    <text class="center" id="hexCount" x="320" y="306">4</text>
+                    <text class="center-sub" id="hexSub" x="320" y="356">материала</text>
+                </svg>
+                <div class="stage-list" id="stageList">
+                    <button class="stage-btn" type="button" data-stage="all" aria-pressed="true"><span class="n"></span><span>Все этапы</span><span class="c"></span></button>
+                    <button class="stage-btn" type="button" data-stage="0" aria-pressed="false"><span class="n">1</span><span>Нормативная база</span><span class="c"></span></button>
+                    <button class="stage-btn" type="button" data-stage="1" aria-pressed="false"><span class="n">2</span><span>Анализ рисков</span><span class="c"></span></button>
+                    <button class="stage-btn" type="button" data-stage="2" aria-pressed="false"><span class="n">3</span><span>Проектирование</span><span class="c"></span></button>
+                    <button class="stage-btn" type="button" data-stage="3" aria-pressed="false"><span class="n">4</span><span>Программное обеспечение</span><span class="c"></span></button>
+                    <button class="stage-btn" type="button" data-stage="4" aria-pressed="false"><span class="n">5</span><span>Сертификация</span><span class="c"></span></button>
+                    <button class="stage-btn" type="button" data-stage="5" aria-pressed="false"><span class="n">6</span><span>Персонал</span><span class="c"></span></button>
+                </div>
+                <div class="types" id="types" role="group" aria-label="Тип материала">
+                    <button class="type-btn" type="button" data-type="all" aria-pressed="true">Все</button>
+                    <button class="type-btn" type="button" data-type="Обзор" aria-pressed="false">Обзоры</button>
+                    <button class="type-btn" type="button" data-type="Статья" aria-pressed="false">Статьи</button>
+                    <button class="type-btn" type="button" data-type="Стандарт" aria-pressed="false">Стандарты</button>
+                    <button class="type-btn" type="button" data-type="Методика" aria-pressed="false">Методики</button>
+                </div>
+            </aside>
+            <div>
+                <div class="lib-top"><p class="count" id="count" aria-live="polite">4 материала</p><button type="button" id="reset">Сбросить</button></div>
+                <div id="list"></div>
+                <p class="empty-note" id="empty">На этом этапе материалы готовятся. Выберите другой этап или сбросьте фильтры.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section mist" id="standards" aria-labelledby="std-title">
+        <div class="wrap">
+            <div class="head-split">
+                <h2 class="h2" id="std-title">Стандарты в фокусе</h2>
+                <p class="lead">Документы, вокруг которых строятся материалы базы, и что по ним искать.</p>
+            </div>
+            <table class="std-table">
+                <thead><tr><th scope="col">Стандарт</th><th scope="col">Область</th><th scope="col">Что найдёте в базе</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">ГОСТ Р МЭК 61508</th><td>Электрические, электронные и программируемые системы, связанные с безопасностью</td><td>Жизненный цикл, требования к ПО, оценка отказов, доказательная база</td></tr>
+                    <tr><th scope="row">ГОСТ Р МЭК 61511</th><td>Системы безопасности технологических процессов</td><td>SIF, SIL, эксплуатация, модификации, периодические проверки</td></tr>
+                    <tr><th scope="row">ИНТИ S.90.15-2023, S.QS.6-2024</th><td>Оценка и подтверждение соответствия в профильных проектах</td><td>Ключевые положения и практические выводы</td></tr>
+                    <tr><th scope="row">ГОСТ 31610.11-2025</th><td>Искробезопасные цепи и оборудование для взрывоопасных сред</td><td>Изменения новой редакции и влияние на проектирование</td></tr>
+                    <tr><th scope="row">ISO 26262</th><td>Автомобильные электрические и электронные системы</td><td>ASIL, архитектурные ограничения, встроенное ПО</td></tr>
+                    <tr><th scope="row">МЭК 62061</th><td>Системы управления машин</td><td>Оценка рисков, функции безопасности, ограничения проекта</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section navy" aria-labelledby="cta-title">
+        <div class="wrap cta-band">
+            <div>
+                <h2 class="h2" id="cta-title">Вся библиотека открыта участникам</h2>
+                <p>Члены ассоциации получают полные методики, шаблоны, чек-листы и подборки по рабочим группам.</p>
+            </div>
+            <a class="btn" href="../index.html#join">Вступить в ассоциацию</a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer" id="contacts">
+    <div class="wrap">
+        <div class="footer-grid">
+            <div>
+                <img class="logo-light" src="../img/MAFB-light.png" alt="Межотраслевая ассоциация функциональная безопасность" width="1024" height="388">
+                <dl class="contacts">
+                    <div><dt>Телефон</dt><dd><a href="tel:+74957990793">+7-495-799-07-93</a></dd></div>
+                    <div><dt>E-mail</dt><dd><a href="mailto:av@iafs.ru">av@iafs.ru</a></dd></div>
+                    <div><dt>Адрес</dt><dd>196128, Санкт-Петербург, ул. Кузнецовская, д. 19, литера А</dd></div>
+                </dl>
+            </div>
+            <form id="feedbackForm" class="js-sheet" action="#" method="POST" data-form-type="feedback">
+                <h3>Задать вопрос</h3>
+                <input type="hidden" name="formType" value="feedback">
+                <div class="fgrid">
+                    <div class="field"><label for="name">Имя</label><input id="name" name="name" autocomplete="name" required></div>
+                    <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+                </div>
+                <div class="field"><label for="message">Вопрос</label><textarea id="message" name="message" required></textarea></div>
+                <button class="btn" type="submit">Отправить</button>
+                <p class="form-status" aria-live="polite"></p>
+            </form>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Межотраслевая ассоциация функциональная безопасность</span>
+            <a href="../../%D0%A3%D1%81%D1%82%D0%B0%D0%B2%20%D0%BE%D0%BA%D0%BE%D0%BD%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%86%D0%B8%D1%8F.pdf" download>Устав ассоциации</a>
+        </div>
+    </div>
+</footer>
+
+<div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-head"><h2 id="modal-title">Запрос материала</h2><button class="modal-close" type="button" data-close aria-label="Закрыть">×</button></div>
+        <p class="modal-what" id="modalWhat"></p>
+        <form id="knowledgeAccessForm" class="js-sheet" action="#" method="POST" data-form-type="knowledgeAccess">
+            <input type="hidden" name="formType" value="knowledgeAccess">
+            <input type="hidden" name="materialTitle" id="materialTitle" data-keep>
+            <div class="field"><label for="accessFullName">ФИО</label><input id="accessFullName" name="fullName" autocomplete="name" required></div>
+            <div class="field"><label for="accessEmail">E-mail</label><input id="accessEmail" name="email" type="email" autocomplete="email" required></div>
+            <button class="btn btn-navy" type="submit">Отправить запрос</button>
+            <p class="form-status" aria-live="polite"></p>
+        </form>
+    </div>
+</div>
+
+<script src="../assets/antibot.js"></script>
+<script src="../assets/site.js"></script>
+<script>
+(function () {
+    var stagesNames = ["Нормативная база", "Анализ рисков", "Проектирование", "Программное обеспечение", "Сертификация", "Персонал"];
+    var materials = [
+        { title: "Стандарты ИНТИ S.90.15-2023 и S.QS.6-2024: что важно для проектов", request: "ОБЗОР СТАНДАРТОВ ИНТИ S.90.15-2023 и S.QS.6-2024", type: "Обзор", date: "май 2026", stages: [0], text: "Область применения, ключевые требования и ориентиры для проектов функциональной безопасности." },
+        { title: "Типовые ошибки при анализе рисков и назначении УПБ контуров ПАЗ", request: "ОШИБКИ ПРИ АНАЛИЗЕ РИСКОВ И НАЗНАЧЕНИИ УПБ КОНТУРОВ ПАЗ", type: "Статья", date: "апрель 2026", stages: [1], text: "Формулирование сценариев, выбор защитных мер и назначение уровня полноты безопасности." },
+        { title: "Новая редакция ГОСТ 31610.11-2025 по искробезопасным цепям", request: "Новая версия стандарта по искробезопасным цепям ГОСТ 31610.11-2025", type: "Стандарт", date: "март 2026", stages: [0, 2], text: "Что изменилось для искробезопасных цепей во взрывоопасных средах и как это влияет на проектирование." },
+        { title: "Методы назначения уровня полноты безопасности", request: "МЕТОДЫ НАЗНАЧЕНИЯ УРОВНЯ ПОЛНОТЫ БЕЗОПАСНОСТИ", type: "Методика", date: "февраль 2026", stages: [1], text: "От качественных матриц риска до количественных методов и связи с требованиями к функциям безопасности." }
+    ];
+    var state = { stage: "all", type: "all", q: "" };
+    var list = document.getElementById("list"), count = document.getElementById("count"), empty = document.getElementById("empty");
+    var esc = function (v) { return String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
+    function plural(n) { var m10 = n % 10, m100 = n % 100; if (m10 === 1 && m100 !== 11) return "материал"; if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return "материала"; return "материалов"; }
+    function match(m, ignoreStage) {
+        var okS = ignoreStage || state.stage === "all" || m.stages.indexOf(Number(state.stage)) > -1;
+        var okT = state.type === "all" || m.type === state.type;
+        var hay = (m.title + " " + m.text + " " + m.type + " " + m.stages.map(function (s) { return stagesNames[s]; }).join(" ")).toLowerCase();
+        return okS && okT && (!state.q || hay.indexOf(state.q.toLowerCase()) > -1);
+    }
+    function render() {
+        var items = materials.filter(function (m) { return match(m); });
+        list.innerHTML = items.map(function (m) {
+            return '<article class="mat"><div><p class="mat-meta"><b>' + esc(m.type) + '</b><span>' + m.stages.map(function (s) { return esc(stagesNames[s]); }).join(", ") + '</span><span>' + esc(m.date) + '</span></p><h3>' + esc(m.title) + '</h3><p>' + esc(m.text) + '</p></div><button class="btn btn-navy ask" type="button" data-title="' + esc(m.request) + '">Запросить</button></article>';
+        }).join("");
+        count.textContent = items.length + " " + plural(items.length);
+        empty.style.display = items.length ? "none" : "block";
+        /* счётчики по этапам с учётом типа и поиска */
+        document.querySelectorAll(".stage-btn").forEach(function (b) {
+            var s = b.dataset.stage;
+            var n = materials.filter(function (m) { return match(m, true) && (s === "all" || m.stages.indexOf(Number(s)) > -1); }).length;
+            b.querySelector(".c").textContent = n;
+            b.disabled = s !== "all" && n === 0 && state.stage !== s;
+            b.setAttribute("aria-pressed", String(state.stage === s));
+        });
+        document.querySelectorAll(".hn").forEach(function (g) {
+            var s = Number(g.dataset.stage);
+            var n = materials.filter(function (m) { return match(m, true) && m.stages.indexOf(s) > -1; }).length;
+            g.classList.toggle("is-on", String(s) === state.stage);
+            g.classList.toggle("is-empty", n === 0);
+        });
+        document.getElementById("hexCount").textContent = items.length;
+        document.getElementById("hexSub").textContent = plural(items.length);
+    }
+    function setStage(s) { state.stage = (state.stage === s && s !== "all") ? "all" : s; render(); }
+    document.querySelectorAll(".stage-btn").forEach(function (b) { b.addEventListener("click", function () { setStage(b.dataset.stage); }); });
+    document.querySelectorAll(".hn").forEach(function (g) { g.addEventListener("click", function () { if (!g.classList.contains("is-empty")) setStage(g.dataset.stage); }); });
+    document.querySelectorAll(".type-btn").forEach(function (b) {
+        b.addEventListener("click", function () {
+            state.type = b.dataset.type;
+            document.querySelectorAll(".type-btn").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+            render();
+        });
+    });
+    var q = document.getElementById("q");
+    q.addEventListener("input", function () { state.q = q.value.trim(); render(); });
+    q.addEventListener("keydown", function (e) { if (e.key === "Enter") document.getElementById("library").scrollIntoView({ behavior: "smooth" }); });
+    document.getElementById("reset").addEventListener("click", function () {
+        state = { stage: "all", type: "all", q: "" }; q.value = "";
+        document.querySelectorAll(".type-btn").forEach(function (x) { x.setAttribute("aria-pressed", String(x.dataset.type === "all")); });
+        render();
+    });
+
+    /* окно запроса материала */
+    var modal = document.getElementById("modal"), last = null;
+    document.addEventListener("click", function (e) {
+        var b = e.target.closest(".ask");
+        if (b) {
+            last = b;
+            document.getElementById("modalWhat").textContent = "Материал: " + b.dataset.title;
+            document.getElementById("materialTitle").value = b.dataset.title;
+            modal.querySelector(".form-status").textContent = "";
+            modal.hidden = false;
+            setTimeout(function () { document.getElementById("accessFullName").focus(); }, 0);
+            return;
+        }
+        if (e.target === modal || e.target.closest("[data-close]")) { modal.hidden = true; if (last) last.focus(); }
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) { modal.hidden = true; if (last) last.focus(); } });
+
+    render();
+}());
+</script>
+</body>
+</html>
